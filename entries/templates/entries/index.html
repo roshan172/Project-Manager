@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Minor Project</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container bg-black">
+                <h1 class="title">
+                    Minor Project - Virtual Diary
+                </h1>
+            </div>
+        </div>
+    </section>
+
+    <br>
+    <div class="d-flex justify-content-end">
+        <a href="{% url 'add' %}"><button type="button" class="btn btn-outline-success pull-right mr-3 mb-3">ADD ACTIVITY</button></a>
+        <a href="{% url 'sendReport' %}"><button type="button" class="btn btn-outline-danger pull-right mr-3 mb-3">SEND DETAILS</button></a>
+    </div>
+
+
+    <section class="section">
+        <div class="container hero-body">
+            {% for entry in entries %}
+            <article class="media">
+                <div class="media-content">
+                    <div class="content">
+                        <p>
+                            <strong class="text-success">{{ entry.date_posted }}</strong><p class="font-weight-bold text-primary">{{entry.title}}</p>
+                            <p class="font-weight-light">{{ entry.text|linebreaksbr }}</p>
+                            <p class="text-danger">{{entry.author}}</p>
+                        </p>
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </section>
+</body>
+
+</html>
