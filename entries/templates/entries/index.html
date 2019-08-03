@@ -8,41 +8,32 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Minor Project</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <body>
-    <section class="hero is-primary">
-        <div class="hero-body">
-            <div class="container bg-black">
-                <h1 class="title">
-                    Minor Project - Virtual Diary
-                </h1>
-            </div>
-        </div>
-    </section>
-
+    <nav class="navbar navbar-light fixed-top">
+        <h3 style="letter-spacing : 2px;"><a class="navbar-brand ml-5 mt-3" href="/">VIRTUAL DIARY</a></h3>
+        <form class="form-inline">
+                <a href="{% url 'add' %}"><button class="btn btn-outline-primary pull-right mr-3 mb-3" type="button">ADD WORK</button></a>
+                <a href="{% url 'sendReport' %}"><button class="btn btn-outline-danger pull-right mr-3 mb-3" type="button">SEND REPORT</button></a>
+        </form>
+    </nav>
     <br>
-    <div class="d-flex justify-content-end">
-        <a href="{% url 'add' %}"><button type="button" class="btn btn-outline-success pull-right mr-3 mb-3">ADD ACTIVITY</button></a>
-        <a href="{% url 'sendReport' %}"><button type="button" class="btn btn-outline-danger pull-right mr-3 mb-3">SEND DETAILS</button></a>
-    </div>
-
-
     <section class="section">
         <div class="container hero-body">
             {% for entry in entries %}
-            <article class="media">
-                <div class="media-content">
-                    <div class="content">
-                        <p>
-                            <strong class="text-success">{{ entry.date_posted }}</strong><p class="font-weight-bold text-primary">{{entry.title}}</p>
-                            <p class="font-weight-light">{{ entry.text|linebreaksbr }}</p>
-                            <p class="text-danger">{{entry.author}}</p>
-                        </p>
-                    </div>
+            <article class="media content-section">
+                <div class="media-body">
+                    <blockquote class="blockquote text-right">
+                            <p class="mb-0 text-primary text-left">{{ entry.title }}</p>
+                            <footer class="blockquote-footer text-success"><strong class="text-success">{{ entry.author }}</strong> on <cite title="Source Title text-secondary">{{ entry.date_posted|date:"M d, Y" }}</cite></footer>
+                    </blockquote>
+                  <p class="article-content font-weight-light">{{ entry.text|linebreaksbr }}</p>
                 </div>
             </article>
+            <hr>
             {% endfor %}
         </div>
     </section>
