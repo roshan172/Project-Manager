@@ -1,3 +1,4 @@
+{%load crispy_forms_tags%}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,44 +8,36 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dear Diary</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 </head>
 
 <body>
-    <section class="hero is-primary">
-        <div class="hero-body">
-            <div class="container">
-                <h1 class="title">
-                    DIARY MANAGER
-                </h1>
-            </div>
-        </div>
-    </section>
-    <section class="section">
-        <div class="container">
-            <form method="POST" action="{% url 'add' %}">
+    <nav class="navbar navbar-light fixed-top">
+        <h3 style="letter-spacing : 2px;"><a class="navbar-brand ml-5 mt-3" href="/">VIRTUAL DIARY</a></h3>
+        <form class="form-inline">
+                <a href="{% url 'add' %}"><button class="btn btn-outline-primary pull-right mr-3 mb-3" type="button">ADD WORK</button></a>
+                <a href="{% url 'sendReport' %}"><button class="btn btn-outline-danger pull-right mr-3 mb-3" type="button">SEND REPORT</button></a>
+        </form>
+    </nav>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="content-section ml-5 mr-5">
+            <form method="POST">
                 {% csrf_token %}
-                <div class="input-group-prepend">
-                    
-                    <div class="control">
-                        {{ form.title }}
-                    </div>
-                    <br>
-                    <div class="control">
-                        {{ form.author }}
-                    </div>
-                    <br>
-                    <div class="control">
-                        {{ form.text }}
-                    </div>
-                </div>
-                <div class="field is-grouped is-grouped-right">
-                    <div class="control">
-                        <button class="button is-link">ADD</button>
-                    </div>
+                <fieldset class='form-group'>
+                    <div class="ml-5 mr-5 text-primary text-uppercase">{{ form.title|as_crispy_field }} </div> <br><br>  
+                    <div class="ml-5 mr-5 text-primary text-uppercase">{{ form.author|as_crispy_field }}</div><br><br>
+                    <div class="ml-5 mr-5 text-primary text-uppercase">{{ form.text|as_crispy_field }}</div>
+                </fieldset>
+                <br>
+                <div class="form-group text-right mr-5">
+                    <button class="btn btn-outline-info" type="submit">ADD TO HISTORY</button>
                 </div>
             </form>
-        </div>
-    </section>
+    </div>
 </body>
 
 </html>
