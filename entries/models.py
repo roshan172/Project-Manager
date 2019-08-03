@@ -4,7 +4,7 @@ from model_utils import Choices
 
 # Create your models here.
 class Entry(models.Model):
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=200)
     ROSHAN = 'Roshan Pandey'
     BHARAT = 'Bharat Hasija'
     authors = [(ROSHAN, 'Roshan Pandey'),(BHARAT, 'Bharat Hasija')]
