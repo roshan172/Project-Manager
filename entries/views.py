@@ -7,7 +7,7 @@ from django.conf import settings
 
 def index(request):
     entries = Entry.objects.order_by('-date_posted')
-    ##Entry.objects.all().delete()  ## UnComment this line to flush the database
+    ##Entry.objects.all().delete()  ## UnComment this to flush the database
     context = {'entries' : entries}
     return render(request,'entries/index.html',context)
 
